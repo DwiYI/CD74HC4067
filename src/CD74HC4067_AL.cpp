@@ -5,7 +5,7 @@
 */
 
 #include "Arduino.h"
-#include "CD74HC4067.h"
+#include "CD74HC4067_AL.h"
 
 uint8_t _g_channel_truth_table[16][4] = {
   // s0, s1, s2, s3     channel
@@ -27,7 +27,7 @@ uint8_t _g_channel_truth_table[16][4] = {
     {1,  1,  1,  1}  // 15
 };
 
-CD74HC4067::CD74HC4067(uint8_t s0, uint8_t s1, uint8_t s2, uint8_t s3)
+CD74HC4067_AL::CD74HC4067_AL(uint8_t s0, uint8_t s1, uint8_t s2, uint8_t s3)
 {
   if(s0 < 255) { pinMode(s0, OUTPUT); _s0 = s0; bytes++; }
   if(s1 < 255) { pinMode(s1, OUTPUT); _s1 = s1; bytes++; }
@@ -35,7 +35,7 @@ CD74HC4067::CD74HC4067(uint8_t s0, uint8_t s1, uint8_t s2, uint8_t s3)
   if(s3 < 255) { pinMode(s3, OUTPUT); _s3 = s3; bytes++; }
 }
 
-void CD74HC4067::channel(uint8_t channel)
+void CD74HC4067_AL::channel(uint8_t channel)
 {
   if(bytes > 0) digitalWrite(_s0, _g_channel_truth_table[channel][0]);
   if(bytes > 1) digitalWrite(_s1, _g_channel_truth_table[channel][1]);
